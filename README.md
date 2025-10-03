@@ -34,3 +34,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Helius Live Activity
+
+The Principals dashboard reads live Solana activity from the `principal-service`. Configure both services before running locally:
+
+**principal-service/.env**
+```bash
+OPENAI_API_KEY=your_openai_api_key
+HELIUS_API_KEY=your_helius_api_key
+HELIUS_MONITORED_ADDRESS=token_or_wallet_address_to_monitor
+HELIUS_CACHE_TTL_MS=30000
+CORS_ORIGIN=http://localhost:3000
+```
+
+**web/.env.local**
+```bash
+NEXT_PUBLIC_PRINCIPAL_SERVICE_URL=http://localhost:4000
+```
+
+The web app polls the principal service every 30 seconds; the service caches Helius responses so all clients share the same data.
+
+
+

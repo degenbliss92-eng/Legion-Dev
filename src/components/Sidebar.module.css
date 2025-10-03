@@ -1,0 +1,113 @@
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 72px;
+  z-index: 1000;
+  background: rgb(26, 26, 26);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 18px;
+  overflow: visible;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #2a2a2a;
+  width: 100%;
+}
+
+.logoImg {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1.2) contrast(1.1);
+  transition: transform 200ms ease, filter 200ms ease;
+}
+
+.logoImg:hover {
+  transform: scale(1.08);
+  filter: brightness(1.4) contrast(1.2);
+}
+
+.nav {
+  width: 100%;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 18px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+}
+
+.item {
+  position: relative;
+}
+
+.link {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.68);
+  text-decoration: none;
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease, color 200ms ease;
+}
+
+.link:hover {
+  color: #d1cfcf;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.active {
+  color: #ffffff;
+  background: rgba(253, 253, 253, 0.12);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 200ms ease;
+}
+
+.link:hover .icon {
+  transform: scale(1.16);
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #ff7a7a;
+  color: #0e0e12;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+.ticker {
+  margin-top: auto;
+  padding: 14px 0 24px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.78rem;
+  text-align: center;
+}

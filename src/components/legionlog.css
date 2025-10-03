@@ -1,0 +1,139 @@
+:root {
+  --bg-panel: #161616;           /* dark neutral */
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.16);
+  --text-strong: rgba(255,255,255,0.92);
+  --text: rgba(255,255,255,0.75);
+  --text-dim: rgba(255,255,255,0.55);
+  --accent: #e0e0e0;
+}
+
+/* Wrap */
+.legion-wrap {
+     height: 20vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 12px;
+  color: var(--text);
+  font-family: 'SUSE Mono','Geist Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Header */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin-bottom: 6px;
+  background: rgba(255,255,255,0.02);
+}
+
+.head h3 {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--text-strong);
+  text-transform: uppercase;
+}
+
+.badge {
+  min-width: 28px;
+  height: 18px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  color: var(--accent);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-strong);
+}
+
+/* Meta row */
+.meta {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+.sub {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+.chip {
+  font-size: 0.7rem;
+  border-radius: 999px;
+  padding: 4px 8px;
+  color: var(--text-strong);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.chip.active {
+  background: rgba(255,255,255,0.12);
+  border-color: var(--border-strong);
+}
+
+.divider {
+  height: 1px;
+  margin: 4px 0 8px;
+  background: rgba(255,255,255,0.08);
+}
+
+.panel {
+  flex: 1;
+  max-height: calc(33vh - 50px); /* 👈 limit height (tweak as needed) */
+  overflow-y: auto;               /* scroll inside instead of stretching */
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  padding: 6px;
+}
+
+.panel::-webkit-scrollbar {
+  width: 8px;
+}
+.panel::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 999px;
+}
+
+
+/* Agent list entries */
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.agent-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  color: var(--text);
+  padding: 2px 0;
+}
+
+.agent-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.agent-id {
+  font-size: 0.74rem;
+  color: var(--text-strong);
+}

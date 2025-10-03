@@ -1,21 +1,30 @@
 {
-  "name": "legion-dev",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start"
-  },
-  "dependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.4"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19"
-  }
+    "version":  "0.1.0",
+    "name":  "legion-dev",
+    "scripts":  {
+                    "build":  "next build",
+                    "dev":  "next dev --turbopack",
+                    "swarm-server":  "node server.mjs",
+                    "start":  "node server.mjs"
+                },
+    "devDependencies":  {
+                            "@types/react-dom":  "^19",
+                            "@types/react":  "^19",
+                            "typescript":  "^5",
+                            "@types/node":  "^20"
+                        },
+    "type":  "module",
+    "dependencies":  {
+                         "@react-three/drei":  "^10.7.6",
+                         "react-dom":  "19.1.0",
+                         "postprocessing":  "^6.37.8",
+                         "three":  "^0.180.0",
+                         "next":  "15.5.4",
+                         "ws":  "^8.18.3",
+                         "lucide-react":  "^0.544.0",
+                         "@react-three/postprocessing":  "^3.0.4",
+                         "uuid":  "^13.0.0",
+                         "@react-three/fiber":  "^9.3.0"
+                     },
+    "private":  true
 }

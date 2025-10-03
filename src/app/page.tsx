@@ -1,95 +1,119 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+﻿"use client";
 
-export default function Home() {
+import { useCallback, useEffect, useState } from "react";
+import Sidebar from "@/components/Sidebar";
+import SwarmCanvas from "@/components/SwarmCanvas";
+import RightSidebar from "@/components/RightSidebar";
+import WelcomeModal from "@/components/WelcomeModal";
+import TourOverlay, { TOUR_LENGTH } from "@/components/TourOverlay";
+import GroupChat from "@/components/GroupChat";
+import AdminPingBanner from "@/components/AdminPingBanner";
+
+type DashboardProps = {
+  showWelcome: boolean;
+  onConnect: () => void;
+};
+
+function Dashboard({ showWelcome, onConnect }: DashboardProps) {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div style={{ position: "relative" }}>
+      <WelcomeModal isOpen={showWelcome} onConnect={onConnect} />
+      <main
+        style={{
+          display: showWelcome ? "none" : "flex",
+          height: "100vh",
+          width: "100vw",
+          background: "black",
+        }}
+      >
+        {/* Sidebar (left) */}
+        <Sidebar />
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
+        {/* Center: Swarm Canvas */}
+        <section id="swarm-canvas-area" style={{ width: "70vw", height: "100vh" }}>
+          <SwarmCanvas />
+        </section>
+
+        {/* Commune Panel */}
+        <GroupChat forceOpen={false} onCollapsedChange={() => {}} />
+
+        {/* Right: Legion panels */}
+        <RightSidebar />
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
+  );
+}
+
+export default function Page() {
+  const [showWelcome, setShowWelcome] = useState<boolean | null>(null);
+  const [tourCompleted, setTourCompleted] = useState<boolean | null>(null);
+  const [showTour, setShowTour] = useState(false);
+  const [tourStep, setTourStep] = useState(0);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const welcomeDismissed = window.localStorage.getItem("legion-welcome-dismissed") === "true";
+    const tourDone = window.localStorage.getItem("legion-tour-complete") === "true";
+    setShowWelcome(welcomeDismissed ? false : true);
+    setTourCompleted(tourDone);
+  }, []);
+
+  const finishTour = useCallback(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("legion-tour-complete", "true");
+    }
+    setShowTour(false);
+    setTourCompleted(true);
+  }, []);
+
+  const handleConnect = useCallback(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("legion-welcome-dismissed", "true");
+    }
+    setShowWelcome(false);
+    setTourStep(0);
+    setShowTour(true);
+    setTourCompleted(false);
+  }, []);
+
+  const handleTourNext = useCallback(() => {
+    setTourStep((prev) => {
+      if (prev >= TOUR_LENGTH - 1) {
+        finishTour();
+        return prev;
+      }
+      return prev + 1;
+    });
+  }, [finishTour]);
+
+  const handleTourSkip = useCallback(() => {
+    finishTour();
+  }, [finishTour]);
+
+  const modalVisible = showWelcome === null ? true : showWelcome;
+
+  useEffect(() => {
+    // When the welcome modal has been dismissed, start the tour only if it hasn't been completed
+    if (showWelcome === false) {
+      if (!tourCompleted) {
+        setTourStep(0);
+        setShowTour(true);
+        setTourCompleted(false);
+      }
+    }
+  }, [showWelcome, tourCompleted]);
+
+  return (
+    <>
+      <TourOverlay
+        isOpen={showTour}
+        step={Math.min(tourStep, TOUR_LENGTH - 1)}
+        onNext={handleTourNext}
+        onSkip={handleTourSkip}
+      />
+      <Dashboard showWelcome={modalVisible} onConnect={handleConnect} />
+      {/* Admin ping banner (bottom-right) */}
+      <AdminPingBanner />
+    </>
   );
 }
