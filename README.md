@@ -1,74 +1,83 @@
-# Legion Project
+# Legion
 
-![Legion Banner](public/banner.jpg)
+![Banner](./public/banner.jpg)
 
-## Overview
-Legion is an experimental crypto-native project that visualizes a **living swarm of nodes** in 3D space.  
-Each participant (client) spawns as a **metaball entity** in the network, dynamically connected through  
-quantum-like links that ripple and transfer energy in real-time.
+**Legion** is an experimental Web3 + AI project that visualizes collective intelligence as a living swarm. Each user spawns a **metaball node** in 3D space, interconnected with quantum-style lines, animated with fluid physics, and enriched with **AI-driven conversations**.  
 
-This project explores the intersection of **WebSockets, 3D graphics (Three.js / React Three Fiber)**,  
-and **crypto-inspired lore**, bringing decentralized presence to life in a cosmic digital canvas.
+The project blends **crypto-inspired visualization**, **multi-agent AI systems**, and **real-time networking** into one interactive swarm canvas.
 
 ---
 
-## Features
-- 🌐 **Dynamic Swarm Rendering** — Every connected client spawns a unique metaball.
-- 🎨 **Unique Identity** — Each node has its own randomized color gradients.
-- 🔗 **Quantum Links** — Smooth, wavy connections between nodes with animated nano-crawlers.
-- 🛰 **Camera Controls** — Follow your node, free-fly, reset, or zoom out to view the full swarm.
-- ⚡ **WebSocket Driven** — Real-time updates of client joins/leaves.
-- 🌌 **Cosmic Aesthetic** — Stars, haze, and node interactions create a living galaxy.
+## ✨ Features
+
+- 🧬 **Swarm Visualizer**: Users spawn as metaballs in a shared 3D cosmic environment.  
+- 🌌 **Quantum Links**: Animated, wavy, data-transfer lines connect the nodes.  
+- 🤖 **Principals Powered by LLMs**: Core entities in the swarm (Principals) are powered by **Large Language Models (LLMs)**, enabling AI-driven dialogue and decision-making.  
+- 🎮 **Interactive Camera**: Free-fly mode, follow-your-node, and swarm zoom-out views.  
+- 🔌 **WebSockets**: Real-time node spawning and swarm state sync across clients.  
+- 🛡️ **Legion Panel**: Right-side panel for consensus logs, activity, and swarm insights.
 
 ---
 
-## Tech Stack
-- **Frontend**: Next.js, React Three Fiber, Drei
-- **3D Graphics**: Three.js (custom shaders, metaballs, quantum links)
-- **Realtime Backend**: Node.js, WebSocket Server
-- **Styling**: CSS modules / Inline styling
+## 🛠 Tech Stack
+
+- **Frontend**: Next.js + React + TypeScript  
+- **3D/Graphics**: Three.js + React Three Fiber + custom GLSL shaders  
+- **Networking**: Node.js WebSocket server  
+- **AI**: LLMs (e.g., OpenAI GPT models — requires API key)  
 
 ---
 
-## Getting Started
+## ⚙️ Setup
 
-### Prerequisites
-- Node.js (>= 18)
-- npm or yarn
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/yourusername/legion.git
+   cd legion
+   ```
 
-### Installation
-```bash
-# Clone the repository
-git clone https://github.com/your-username/legion.git
-cd legion
+2. Install dependencies:  
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-# Install dependencies
-npm install
+3. Create a `.env.local` file in the root and add your **LLM API key**:  
+   ```bash
+   NEXT_PUBLIC_LLM_API_KEY=your_api_key_here
+   ```
 
-# Start the development server
-npm run dev
+4. Run the WebSocket server:  
+   ```bash
+   node server.mjs
+   ```
+
+5. Start the Next.js development server:  
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 📂 Project Structure
+
+```
+├── public/              # Static assets (banners, icons, SVGs)
+├── scripts/             # Utility scripts
+├── src/
+│   ├── app/             # Next.js app routes
+│   ├── components/      # React components (SwarmCanvas, MetaBall, QuantumLinks, etc.)
+│   ├── hooks/           # Custom hooks (e.g., useSwarm)
+│   └── styles/          # CSS modules
+└── server.mjs           # WebSocket server
 ```
 
 ---
 
-## Project Structure
-```
-src/
-  app/              # Next.js app routes
-  components/       # UI + 3D components (Swarm, MetaBall, QuantumLinks, etc.)
-  public/           # Static assets (banner, icons, etc.)
-  scripts/          # Utility scripts
-```
+## 🧭 Vision / Lore
 
----
+Legion is a living experiment in **crypto, AI, and collective intelligence**.  
+Every node is a participant; every link is a transaction of energy, thought, or data. The **Principals**, powered by LLMs, are guiding forces — shaping the swarm with reason, randomness, and emergent logic.  
 
-## Usage
-- Open the app in your browser.
-- A metaball spawns representing your session.
-- Move the camera freely, or follow/reset/zoom out using UI controls.
-- Open multiple tabs to simulate multiple clients and watch the swarm grow.
-
----
-
-## License
-This project is licensed under the MIT License.
+Together, the swarm evolves. 🪐  
