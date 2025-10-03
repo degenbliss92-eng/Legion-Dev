@@ -1,59 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Legion Project
+
+![Legion Banner](public/banner.jpg)
+
+## Overview
+Legion is an experimental crypto-native project that visualizes a **living swarm of nodes** in 3D space.  
+Each participant (client) spawns as a **metaball entity** in the network, dynamically connected through  
+quantum-like links that ripple and transfer energy in real-time.
+
+This project explores the intersection of **WebSockets, 3D graphics (Three.js / React Three Fiber)**,  
+and **crypto-inspired lore**, bringing decentralized presence to life in a cosmic digital canvas.
+
+---
+
+## Features
+- 🌐 **Dynamic Swarm Rendering** — Every connected client spawns a unique metaball.
+- 🎨 **Unique Identity** — Each node has its own randomized color gradients.
+- 🔗 **Quantum Links** — Smooth, wavy connections between nodes with animated nano-crawlers.
+- 🛰 **Camera Controls** — Follow your node, free-fly, reset, or zoom out to view the full swarm.
+- ⚡ **WebSocket Driven** — Real-time updates of client joins/leaves.
+- 🌌 **Cosmic Aesthetic** — Stars, haze, and node interactions create a living galaxy.
+
+---
+
+## Tech Stack
+- **Frontend**: Next.js, React Three Fiber, Drei
+- **3D Graphics**: Three.js (custom shaders, metaballs, quantum links)
+- **Realtime Backend**: Node.js, WebSocket Server
+- **Styling**: CSS modules / Inline styling
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js (>= 18)
+- npm or yarn
 
+### Installation
 ```bash
+# Clone the repository
+git clone https://github.com/your-username/legion.git
+cd legion
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## Helius Live Activity
-
-The Principals dashboard reads live Solana activity from the `principal-service`. Configure both services before running locally:
-
-**principal-service/.env**
-```bash
-OPENAI_API_KEY=your_openai_api_key
-HELIUS_API_KEY=your_helius_api_key
-HELIUS_MONITORED_ADDRESS=token_or_wallet_address_to_monitor
-HELIUS_CACHE_TTL_MS=30000
-CORS_ORIGIN=http://localhost:3000
+## Project Structure
+```
+src/
+  app/              # Next.js app routes
+  components/       # UI + 3D components (Swarm, MetaBall, QuantumLinks, etc.)
+  public/           # Static assets (banner, icons, etc.)
+  scripts/          # Utility scripts
 ```
 
-**web/.env.local**
-```bash
-NEXT_PUBLIC_PRINCIPAL_SERVICE_URL=http://localhost:4000
-```
+---
 
-The web app polls the principal service every 30 seconds; the service caches Helius responses so all clients share the same data.
+## Usage
+- Open the app in your browser.
+- A metaball spawns representing your session.
+- Move the camera freely, or follow/reset/zoom out using UI controls.
+- Open multiple tabs to simulate multiple clients and watch the swarm grow.
 
+---
 
-
+## License
+This project is licensed under the MIT License.
